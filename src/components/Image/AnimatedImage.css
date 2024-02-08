@@ -1,0 +1,30 @@
+.animatedImageContainer {
+  position: relative;
+  overflow: hidden;
+}
+
+.slideBox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  background-color: #f94c25;
+  animation: slideRight 1.5s linear forwards;
+}
+
+@keyframes slideRight {
+  0% {
+    transform: translateX(-100%);
+  }
+  35% {
+    transform: translateX(0%);
+  }
+  65% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
