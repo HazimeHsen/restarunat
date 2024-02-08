@@ -103,7 +103,7 @@ const FeaturedCard: React.FC<FeaturedCardProps> = ({ item, index }) => {
   return (
     <div ref={ref} key={index} className="w-fit mx-auto self-end">
       <AnimatedImage
-        className="w-[100%] max-w-[400px] sm:max-w-full h-auto shadow-2xl"
+        className="w-full max-w-[400px] sm:max-w-full shadow-2xl"
         src={item.src}
         width={item.width}
         height={item.height}

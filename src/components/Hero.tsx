@@ -69,9 +69,12 @@ const Hero = () => {
             />
           </motion.div>
         </motion.div>
-        <motion.div variants={fadeIn} transition={{ delay: 1, duration: 0.4 }}>
+        <motion.div
+          className="w-full flex justify-evenly"
+          variants={fadeIn}
+          transition={{ delay: 1, duration: 0.4 }}>
           <Image
-            className="w-full xl:max-w-[600px] lg:max-w-[500px] md:max-w-[400px] max-w-[300px] "
+            className="w-full lg:max-w-[500px] md:max-w-[400px] max-w-[300px] "
             alt="hero"
             width={600}
             height={200}
