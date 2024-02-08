@@ -41,7 +41,7 @@ const AnimatedImage: React.FC<Props> = ({
   };
 
   return (
-    <div ref={ref} className={"animatedImageContainer w-fit"}>
+    <div ref={ref} className={"animatedImageContainer"}>
       <div className={`${inView ? "slideBox" : ""}`} />
       <motion.div
         initial="hidden"
