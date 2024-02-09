@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Dash from "@/components/Dash";
 import Image from "next/image";
 import MenuCard from "@/components/MenuCard";
+import Bg from "@/components/Bg/BgAnimation";
 
 const menuData = [
   {
@@ -61,48 +62,53 @@ const Menu = () => {
     : menuData;
 
   return (
-    <div className="container pt-28 flex-1 overflow-hidden">
-      <div className="space-y-4 w-fit mx-auto text-center">
-        <h2 className="text-4xl md:text-6xl font-bold">
-          Our <span className="text-accent">Menu</span>
-        </h2>
-        <p className="text-gray-700">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam dolorem
-          <br />
-          quidem esse eum animi?
-        </p>
-        <div className="w-fit mx-auto">
-          <Dash />
+    <>
+      <Bg />
+
+      <div className="container min-h-screen pt-28 flex-1 overflow-hidden">
+        <div className="space-y-4 w-fit mx-auto text-center">
+          <h2 className="text-4xl md:text-6xl font-bold">
+            Our <span className="text-accent">Menu</span>
+          </h2>
+          <p className="text-gray-700">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
+            dolorem
+            <br />
+            quidem esse eum animi?
+          </p>
+          <div className="w-fit mx-auto">
+            <Dash />
+          </div>
         </div>
-      </div>
 
-      <ul className="mt-10 flex gap-6 md:gap-10 lg:gap-20 mx-auto overflow-x-auto">
-        {categories.map((category, index) => (
-          <li
-            key={index}
-            className={`cursor-pointer p-1 hover:bg-accent/70 hover:text-white rounded-md whitespace-nowrap ${
-              selectedCategory === category ? "bg-accent text-white " : ""
-            }`}
-            onClick={() => handleCategoryClick(category)}>
-            {category}
-          </li>
-        ))}
-      </ul>
-
-      <div className="pt-10">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
-          {filteredMenuData.map((item, index) => (
-            <MenuCard
+        <ul className="mt-10 flex gap-6 md:gap-10 lg:gap-20 mx-auto overflow-x-auto">
+          {categories.map((category, index) => (
+            <li
               key={index}
-              images={item.images}
-              title={item.title}
-              desc={item.desc}
-              price={item.price}
-            />
+              className={`cursor-pointer p-1 hover:bg-accent/70 hover:text-white rounded-md whitespace-nowrap ${
+                selectedCategory === category ? "bg-accent text-white " : ""
+              }`}
+              onClick={() => handleCategoryClick(category)}>
+              {category}
+            </li>
           ))}
+        </ul>
+
+        <div className="pt-10">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4 w-full">
+            {filteredMenuData.map((item, index) => (
+              <MenuCard
+                key={index}
+                images={item.images}
+                title={item.title}
+                desc={item.desc}
+                price={item.price}
+              />
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

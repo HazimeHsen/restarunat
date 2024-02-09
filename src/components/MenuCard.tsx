@@ -17,7 +17,7 @@ const MenuCard: React.FC<propsType> = ({ images, title, desc, price }) => {
   return (
     <div
       onClick={() => setIsOpen(!isOpen)}
-      className="flex flex-1 items-center peer bg-gray-100 py-2 hover:bg-accent/20 transition-colors duration-200 px-5 gap-3 cursor-pointer rounded-md justify-between">
+      className="flex flex-1 items-center peer bg-gray-50 py-2 hover:bg-accent/20 transition-colors duration-200 px-5 gap-3 cursor-pointer rounded-md justify-between">
       <h2 className="text-sm font-semibold">{title}</h2>
       <div className="flex items-center gap-2">
         <p className="text-accent">{price}</p>
