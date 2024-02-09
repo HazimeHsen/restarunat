@@ -7,14 +7,17 @@ import "swiper/css/pagination";
 import SwiperCore from "swiper";
 import { Pagination } from "swiper/modules";
 import Slider from "./Slider";
+import { PortableTextBlock } from "sanity";
+import { PortableText } from "@portabletext/react";
+import { Images } from "../../types/Images";
 
 interface ModalProps {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   title: string;
-  desc: string;
-  price: string;
-  images: string[];
+  desc: PortableTextBlock[];
+  price: number;
+  images: Images[];
 }
 
 SwiperCore.use([Pagination]);
@@ -64,8 +67,10 @@ const Modal: React.FC<ModalProps> = ({
                       className="text-lg font-medium leading-6 text-gray-900">
                       {title}
                     </Dialog.Title>
-                    <p className="text-sm text-gray-500 mt-2">{desc}</p>
-                    <p className="text-sm text-accent mt-2">{price}</p>
+                    <div className="text-sm text-gray-500 mt-2">
+                      <PortableText value={desc || []} />
+                    </div>
+                    <p className="text-sm text-accent mt-2">${price}</p>
                   </div>
 
                   <div className="mt-4">

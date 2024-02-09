@@ -3,12 +3,14 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { BsArrowRight } from "react-icons/bs";
 import Modal from "./Modal";
+import { PortableTextBlock } from "sanity";
+import { Images } from "../../types/Images";
 
 interface propsType {
-  images: string[];
+  images: Images[];
   title: string;
-  desc: string;
-  price: string;
+  desc: PortableTextBlock[];
+  price: number;
 }
 
 const MenuCard: React.FC<propsType> = ({ images, title, desc, price }) => {
@@ -20,7 +22,7 @@ const MenuCard: React.FC<propsType> = ({ images, title, desc, price }) => {
       className="flex flex-1 items-center peer bg-gray-50 py-2 hover:bg-accent/20 transition-colors duration-200 px-5 gap-3 cursor-pointer rounded-md justify-between">
       <h2 className="text-sm font-semibold">{title}</h2>
       <div className="flex items-center gap-2">
-        <p className="text-accent">{price}</p>
+        <p className="text-accent">${price}</p>
         <BsArrowRight className="text-accent" />
       </div>
       <Modal

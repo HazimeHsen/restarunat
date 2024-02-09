@@ -4,9 +4,10 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import Image from "next/image";
+import { Images } from "../../types/Images";
 
 interface SliderProps {
-  images: string[];
+  images: Images[];
 }
 
 const Slider: React.FC<SliderProps> = ({ images }) => {
@@ -24,7 +25,7 @@ const Slider: React.FC<SliderProps> = ({ images }) => {
               className="w-full max-h-[300px] object-cover"
               width={300}
               height={200}
-              src={image}
+              src={image.url}
               alt={`Slide ${index + 1}`}
             />
           </SwiperSlide>
