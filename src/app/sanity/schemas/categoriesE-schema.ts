@@ -1,18 +1,12 @@
 const categories = {
-  name: "category",
-  title: "Category",
+  name: "categoryE",
+  title: "Category (English)",
   type: "document",
   fields: [
     {
       name: "name",
       title: "Name",
       type: "string",
-    },
-    {
-      name: "slug",
-      title: "Slug",
-      type: "slug",
-      options: { source: "name" },
     },
   ],
 };

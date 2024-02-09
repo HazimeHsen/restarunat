@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Logo from "../Logo";
 import BurgerMenu from "./BurgerMenu";
 import MenuLinks from "./MenuLinks";
+import LangToggleButton from "../LangToggleButton";
 
 function Navbar() {
   const [isGlassy, setIsGlassy] = useState(false);
@@ -34,6 +35,7 @@ function Navbar() {
         <Logo />
       </div>
       <div className="relative flex items-center">
+        <LangToggleButton />
         <div className="hidden md:block">
           <MenuLinks />
         </div>

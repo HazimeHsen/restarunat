@@ -16,7 +16,7 @@ const Dash = () => {
   return (
     <motion.div
       ref={ref}
-      className="bg-accent origin-left h-[5px] w-[70px] mt-10"
+      className="bg-accent origin-left h-[5px] w-[70px] mt-5"
       initial={{ scale: 0 }}
       animate={controls}
       transition={{ duration: 0.4 }}

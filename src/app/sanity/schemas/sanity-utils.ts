@@ -13,19 +13,23 @@ export async function getProducts(): Promise<Products[]> {
     groq`*[_type == "product"]{
             _id,
             _createdAt,
-            name,
-            "slug": slug.current,
+            nameE,
+            nameA,
             "image": image[].asset->{
               _id,
               url
             },
             price,
-            "category": {
+            "categoryE": {
               "_id": category._ref,
               "name": category->name,
-              "slug": category->slug.current
             },
-            content
+            "categoryA": {
+              "_id": category._ref,
+              "name": category->name,
+            },
+            contentE,
+            contentA
         }`
   );
 }
@@ -59,7 +63,7 @@ export async function getProduct(id: string): Promise<Products> {
     { id }
   );
 }
-export async function getCategories(): Promise<Categories[]> {
+export async function getCategoriesE(): Promise<Categories[]> {
   const client = createClient({
     projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
     dataset: "production",
@@ -67,11 +71,25 @@ export async function getCategories(): Promise<Categories[]> {
   });
 
   return client.fetch(
-    groq`*[_type == "category"]{
+    groq`*[_type == "categoryE"]{
             _id,
             _createdAt,
             name,
-            "slug": slug.current
+        }`
+  );
+}
+export async function getCategoriesA(): Promise<Categories[]> {
+  const client = createClient({
+    projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+    dataset: "production",
+    apiVersion: "2023-11-06",
+  });
+
+  return client.fetch(
+    groq`*[_type == "categoryA"]{
+            _id,
+            _createdAt,
+            name,
         }`
   );
 }

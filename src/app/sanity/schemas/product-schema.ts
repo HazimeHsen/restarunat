@@ -4,20 +4,19 @@ const products = {
   type: "document",
   fields: [
     {
-      name: "name",
-      title: "Name",
+      name: "nameE",
+      title: "Name (English)",
+      type: "string",
+    },
+    {
+      name: "nameA",
+      title: "Name (Arabic)",
       type: "string",
     },
     {
       name: "price",
       title: "Price",
       type: "number",
-    },
-    {
-      name: "slug",
-      title: "Slug",
-      type: "slug",
-      options: { source: "name" },
     },
     {
       name: "image",
@@ -29,14 +28,26 @@ const products = {
       },
     },
     {
-      name: "category",
+      name: "categoryE",
       type: "reference",
-      title: "Category",
-      to: [{ type: "category" }],
+      title: "Category (English)",
+      to: [{ type: "categoryE" }],
     },
     {
-      name: "content",
-      title: "Content",
+      name: "categoryA",
+      type: "reference",
+      title: "Category (Arabic)",
+      to: [{ type: "categoryA" }],
+    },
+    {
+      name: "contentE",
+      title: "Content (English)",
+      type: "array",
+      of: [{ type: "block" }],
+    },
+    {
+      name: "contentA",
+      title: "Content (Arabic)",
       type: "array",
       of: [{ type: "block" }],
     },

@@ -1,14 +1,17 @@
 import { PortableTextBlock } from "sanity";
-import { Categories } from "./Categories";
 import { Images } from "./Images";
+import { Categories } from "./Categories";
 
 export type Products = {
   _id: string;
   _createdAt: Date;
-  name: string;
+  nameE: string;
+  nameA: string;
   slug: string;
   price: number;
   image: Images[];
-  content: PortableTextBlock[];
-  category: Categories;
+  contentE: PortableTextBlock[];
+  contentA: PortableTextBlock[];
+  categoryE: Categories;
+  categoryA: Categories;
 };

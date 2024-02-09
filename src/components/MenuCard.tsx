@@ -8,12 +8,19 @@ import { Images } from "../../types/Images";
 
 interface propsType {
   images: Images[];
+  lang: string;
   title: string;
   desc: PortableTextBlock[];
   price: number;
 }
 
-const MenuCard: React.FC<propsType> = ({ images, title, desc, price }) => {
+const MenuCard: React.FC<propsType> = ({
+  images,
+  lang,
+  title,
+  desc,
+  price,
+}) => {
   let [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -23,9 +30,12 @@ const MenuCard: React.FC<propsType> = ({ images, title, desc, price }) => {
       <h2 className="text-sm font-semibold">{title}</h2>
       <div className="flex items-center gap-2">
         <p className="text-accent">${price}</p>
-        <BsArrowRight className="text-accent" />
+        <BsArrowRight
+          className={`${lang === "arabic" && "rotate-180"} text-accent`}
+        />
       </div>
       <Modal
+        lang={lang}
         images={images}
         title={title}
         desc={desc}
