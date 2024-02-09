@@ -15,131 +15,140 @@ import { Categories } from "../../types/Categories";
 import ClientOnly from "@/components/ClientOnly";
 import { useSearchParams } from "next/navigation";
 
-const MenuPage = () => {
+
+const LoadingIndicator: React.FC = () => (
+  <div className="flex justify-center items-center h-full w-full">
+    Loading...
+  </div>
+);
+
+const CategoryItem: React.FC<{
+  category: Categories;
+  isSelected: boolean;
+  onClick: () => void;
+}> = ({ category, isSelected, onClick }) => (
+  <li
+    className={`cursor-pointer p-1 hover:bg-accent/70 hover:text-white rounded-md whitespace-nowrap ${
+      isSelected ? "bg-accent text-white " : ""
+    }`}
+    onClick={onClick}>
+    {category.name}
+  </li>
+);
+
+const MenuPage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<Categories | null>(
     null
   );
   const [products, setProducts] = useState<Products[]>([]);
   const [categories, setCategories] = useState<Categories[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [selectedLanguage, setSelectedLanguage] = useState<string>("english");
   const searchParams = useSearchParams();
 
   useEffect(() => {
     const lang = searchParams.get("lang");
     setSelectedLanguage(lang || "english");
-    setSelectedCategory(null);
+    setSelectedCategory(
+      lang === "arabic"
+        ? { _id: "الكل", name: "الكل" }
+        : {
+            _id: "all",
+            name: "All",
+          }
+    );
   }, [searchParams]);
 
-  const handleCategoryClick = (category: Categories) => {
+  const handleCategoryClick = (category: Categories | null) => {
     setSelectedCategory(category);
   };
 
-const filteredMenuData = selectedCategory
-  ? products.filter(
-      (item) =>
-        (selectedLanguage === "arabic"
-          ? item.categoryA._id
-          : item.categoryE._id) === selectedCategory._id
-    )
-  : products;
+  useEffect(() => {
+    const getData = async () => {
+      const productsData = await getProducts();
+      setProducts(productsData);
+      if (selectedLanguage === "arabic") {
+        const categoriesData = await getCategoriesA();
+        setCategories([{ _id: "الكل", name: "الكل" }, ...categoriesData]);
+      } else {
+        const categoriesData = await getCategoriesE();
+        setCategories([{ _id: "all", name: "All" }, ...categoriesData]);
+      }
+    };
+    getData();
+  }, [selectedLanguage]);
 
-useEffect(() => {
-  const getData = async () => {
-    setIsLoading(true);
-    const products = await getProducts();
-    setProducts(products);
-    if (selectedLanguage === "arabic") {
-      const categories = await getCategoriesA();
-      setCategories(categories);
-    } else {
-      const categories = await getCategoriesE();
-      setCategories(categories);
-    }
-    setIsLoading(false);
+  const getMenuTitle = () => {
+    return selectedLanguage === "arabic" ? (
+      "قائمتنا"
+    ) : (
+      <>
+        Our <span className="text-accent">Menu</span>
+      </>
+    );
   };
-  getData();
-}, [selectedLanguage]);
-const getMenuTitle = () => {
-  return selectedLanguage === "arabic" ? (
-    "قائمتنا"
-  ) : (
-    <>
-      Our <span className="text-accent">Menu</span>
-    </>
-  );
-};
 
-return (
-  <ClientOnly>
-    <Suspense>
-      <Navbar />
-      <Bg />
+  const filteredMenuData = selectedCategory
+    ? selectedCategory._id === "all" || selectedCategory._id === "الكل"
+      ? products
+      : products.filter(
+          (item) =>
+            (selectedLanguage === "arabic"
+              ? item.categoryA._id
+              : item.categoryE._id) === selectedCategory._id
+        )
+    : products;
 
-      <div
-        dir={selectedLanguage === "arabic" ? "rtl" : "ltr"}
-        className="container min-h-screen pt-28 flex-1 overflow-hidden">
-        <div className="space-y-4 w-fit mx-auto text-center">
-          <h2 className="text-4xl md:text-6xl font-bold">{getMenuTitle()}</h2>
-          <div className="w-fit mx-auto">
-            <Dash />
+  return (
+    <ClientOnly>
+      <Suspense fallback={<LoadingIndicator />}>
+        <Navbar />
+        <Bg />
+
+        <div
+          dir={selectedLanguage === "arabic" ? "rtl" : "ltr"}
+          className="container min-h-screen pt-28 flex-1 overflow-hidden">
+          <div className="space-y-4 w-fit mx-auto text-center">
+            <h2 className="text-4xl md:text-6xl font-bold">{getMenuTitle()}</h2>
+            <div className="w-fit mx-auto">
+              <Dash />
+            </div>
+          </div>
+          <ul className="mt-10 flex gap-6 justify-center md:gap-10 lg:gap-20 mx-auto overflow-x-auto">
+            {categories.map((category, index) => (
+              <CategoryItem
+                key={index}
+                category={category}
+                isSelected={selectedCategory?._id === category._id}
+                onClick={() => handleCategoryClick(category)}
+              />
+            ))}
+          </ul>
+
+          <div className="pt-10">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4 w-full">
+              {filteredMenuData.map((item, index) => (
+                <MenuCard
+                  key={index}
+                  lang={selectedLanguage}
+                  images={item.image}
+                  title={
+                    selectedLanguage === "arabic" ? item.nameA : item.nameE
+                  }
+                  desc={
+                    selectedLanguage === "arabic"
+                      ? item.contentA
+                      : item.contentE
+                  }
+                  price={item.price}
+                />
+              ))}
+            </div>
           </div>
         </div>
-        {isLoading ? (
-          <div className="flex justify-center items-center h-full w-full">
-            ...Loading
-          </div>
-        ) : (
-          <>
-            <ul className="mt-10 flex gap-6 justify-center md:gap-10 lg:gap-20 mx-auto overflow-x-auto">
-              {categories.map((category, index) => (
-                <li
-                  key={index}
-                  className={`cursor-pointer p-1 hover:bg-accent/70 hover:text-white rounded-md whitespace-nowrap ${
-                    selectedCategory?._id === category._id
-                      ? "bg-accent text-white "
-                      : ""
-                  }`}
-                  onClick={() => {
-                    handleCategoryClick(category);
-                  }}>
-                  {category.name}
-                </li>
-              ))}
-            </ul>
-
-            <div className="pt-10">
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4 w-full">
-                {filteredMenuData.map((item, index) =>
-                  selectedLanguage === "arabic" ? (
-                    <MenuCard
-                      key={index}
-                      lang={selectedLanguage}
-                      images={item.image}
-                      title={item.nameA}
-                      desc={item.contentA}
-                      price={item.price}
-                    />
-                  ) : (
-                    <MenuCard
-                      key={index}
-                      lang={selectedLanguage}
-                      images={item.image}
-                      title={item.nameE}
-                      desc={item.contentE}
-                      price={item.price}
-                    />
-                  )
-                )}
-              </div>
-            </div>
-          </>
-        )}
-      </div>
-      <Footer />
-    </Suspense>
-  </ClientOnly>
-);
+        <Footer />
+      </Suspense>
+    </ClientOnly>
+  );
 };
 
 export default MenuPage;
