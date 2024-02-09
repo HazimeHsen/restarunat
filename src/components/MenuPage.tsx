@@ -28,112 +28,118 @@ const MenuPage = () => {
   useEffect(() => {
     const lang = searchParams.get("lang");
     setSelectedLanguage(lang || "english");
+    setSelectedCategory(null);
   }, [searchParams]);
 
   const handleCategoryClick = (category: Categories) => {
     setSelectedCategory(category);
   };
 
-  const filteredMenuData = selectedCategory
-    ? products.filter((item) => item.categoryE._id === selectedCategory._id)
-    : products;
+const filteredMenuData = selectedCategory
+  ? products.filter(
+      (item) =>
+        (selectedLanguage === "arabic"
+          ? item.categoryA._id
+          : item.categoryE._id) === selectedCategory._id
+    )
+  : products;
 
-  useEffect(() => {
-    const getData = async () => {
-      setIsLoading(true);
-      const products = await getProducts();
-      setProducts(products);
-      if (selectedLanguage === "arabic") {
-        const categories = await getCategoriesA();
-        setCategories(categories);
-      } else {
-        const categories = await getCategoriesE();
-        setCategories(categories);
-      }
-      setIsLoading(false);
-    };
-    getData();
-  }, [selectedLanguage]);
-  const getMenuTitle = () => {
-    return selectedLanguage === "arabic" ? (
-      "قائمتنا"
-    ) : (
-      <>
-        Our <span className="text-accent">Menu</span>
-      </>
-    );
+useEffect(() => {
+  const getData = async () => {
+    setIsLoading(true);
+    const products = await getProducts();
+    setProducts(products);
+    if (selectedLanguage === "arabic") {
+      const categories = await getCategoriesA();
+      setCategories(categories);
+    } else {
+      const categories = await getCategoriesE();
+      setCategories(categories);
+    }
+    setIsLoading(false);
   };
-
-  return (
-    <ClientOnly>
-      <Suspense>
-        <Navbar />
-        <Bg />
-
-        <div
-          dir={selectedLanguage === "arabic" ? "rtl" : "ltr"} // Set the direction based on the selected language
-          className="container min-h-screen pt-28 flex-1 overflow-hidden">
-          <div className="space-y-4 w-fit mx-auto text-center">
-            <h2 className="text-4xl md:text-6xl font-bold">{getMenuTitle()}</h2>
-            <div className="w-fit mx-auto">
-              <Dash />
-            </div>
-          </div>
-          {isLoading ? (
-            <div className="flex justify-center items-center h-full w-full">
-              ...Loading
-            </div>
-          ) : (
-            <>
-              <ul className="mt-10 flex gap-6 justify-center md:gap-10 lg:gap-20 mx-auto overflow-x-auto">
-                {categories.map((category, index) => (
-                  <li
-                    key={index}
-                    className={`cursor-pointer p-1 hover:bg-accent/70 hover:text-white rounded-md whitespace-nowrap ${
-                      selectedCategory?.slug === category.slug
-                        ? "bg-accent text-white "
-                        : ""
-                    }`}
-                    onClick={() => {
-                      handleCategoryClick(category);
-                    }}>
-                    {category.name}
-                  </li>
-                ))}
-              </ul>
-
-              <div className="pt-10">
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4 w-full">
-                  {filteredMenuData.map((item, index) =>
-                    selectedLanguage === "arabic" ? (
-                      <MenuCard
-                        key={index}
-                        lang={selectedLanguage}
-                        images={item.image}
-                        title={item.nameA}
-                        desc={item.contentA}
-                        price={item.price}
-                      />
-                    ) : (
-                      <MenuCard
-                        key={index}
-                        lang={selectedLanguage}
-                        images={item.image}
-                        title={item.nameE}
-                        desc={item.contentE}
-                        price={item.price}
-                      />
-                    )
-                  )}
-                </div>
-              </div>
-            </>
-          )}
-        </div>
-        <Footer />
-      </Suspense>
-    </ClientOnly>
+  getData();
+}, [selectedLanguage]);
+const getMenuTitle = () => {
+  return selectedLanguage === "arabic" ? (
+    "قائمتنا"
+  ) : (
+    <>
+      Our <span className="text-accent">Menu</span>
+    </>
   );
+};
+
+return (
+  <ClientOnly>
+    <Suspense>
+      <Navbar />
+      <Bg />
+
+      <div
+        dir={selectedLanguage === "arabic" ? "rtl" : "ltr"}
+        className="container min-h-screen pt-28 flex-1 overflow-hidden">
+        <div className="space-y-4 w-fit mx-auto text-center">
+          <h2 className="text-4xl md:text-6xl font-bold">{getMenuTitle()}</h2>
+          <div className="w-fit mx-auto">
+            <Dash />
+          </div>
+        </div>
+        {isLoading ? (
+          <div className="flex justify-center items-center h-full w-full">
+            ...Loading
+          </div>
+        ) : (
+          <>
+            <ul className="mt-10 flex gap-6 justify-center md:gap-10 lg:gap-20 mx-auto overflow-x-auto">
+              {categories.map((category, index) => (
+                <li
+                  key={index}
+                  className={`cursor-pointer p-1 hover:bg-accent/70 hover:text-white rounded-md whitespace-nowrap ${
+                    selectedCategory?._id === category._id
+                      ? "bg-accent text-white "
+                      : ""
+                  }`}
+                  onClick={() => {
+                    handleCategoryClick(category);
+                  }}>
+                  {category.name}
+                </li>
+              ))}
+            </ul>
+
+            <div className="pt-10">
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4 w-full">
+                {filteredMenuData.map((item, index) =>
+                  selectedLanguage === "arabic" ? (
+                    <MenuCard
+                      key={index}
+                      lang={selectedLanguage}
+                      images={item.image}
+                      title={item.nameA}
+                      desc={item.contentA}
+                      price={item.price}
+                    />
+                  ) : (
+                    <MenuCard
+                      key={index}
+                      lang={selectedLanguage}
+                      images={item.image}
+                      title={item.nameE}
+                      desc={item.contentE}
+                      price={item.price}
+                    />
+                  )
+                )}
+              </div>
+            </div>
+          </>
+        )}
+      </div>
+      <Footer />
+    </Suspense>
+  </ClientOnly>
+);
 };
 
 export default MenuPage;

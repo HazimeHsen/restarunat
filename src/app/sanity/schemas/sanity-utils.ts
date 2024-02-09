@@ -21,12 +21,12 @@ export async function getProducts(): Promise<Products[]> {
             },
             price,
             "categoryE": {
-              "_id": category._ref,
-              "name": category->name,
+              "_id": categoryE._ref,
+              "name": categoryE->name,
             },
             "categoryA": {
-              "_id": category._ref,
-              "name": category->name,
+              "_id": categoryA._ref,
+              "name": categoryA->name,
             },
             contentE,
             contentA

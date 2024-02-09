@@ -35,9 +35,11 @@ function Navbar() {
         <Logo />
       </div>
       <div className="relative flex items-center">
-        <LangToggleButton />
-        <div className="hidden md:block">
-          <MenuLinks />
+        <div className="flex items-center gap-8">
+          <LangToggleButton />
+          <div className="hidden md:block">
+            <MenuLinks />
+          </div>
         </div>
         <div className="block md:hidden">
           <BurgerMenu />
