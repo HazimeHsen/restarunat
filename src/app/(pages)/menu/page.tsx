@@ -8,6 +8,7 @@ import Navbar from "@/components/Navbar";
 import { Products } from "../../../../types/Products";
 import { getCategories, getProducts } from "@/app/sanity/schemas/sanity-utils";
 import { Categories } from "../../../../types/Categories";
+import ClientOnly from "@/components/ClientOnly";
 
 const Menu = () => {
   const [selectedCategory, setSelectedCategory] = useState<Categories | null>(
@@ -38,7 +39,7 @@ const Menu = () => {
   }, []);
 
   return (
-    <>
+    <ClientOnly>
       <Navbar />
       <Bg />
 
@@ -97,7 +98,7 @@ const Menu = () => {
         )}
       </div>
       <Footer />
-    </>
+    </ClientOnly>
   );
 };
 
