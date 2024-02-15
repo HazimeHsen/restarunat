@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --primaryColor: #ffd231f4;
+  --primaryColor: #ffc90af4;
 }
 
 .menu__link {

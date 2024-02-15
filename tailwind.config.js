@@ -12,7 +12,7 @@ module.exports = {
         padding: "15px",
       },
       colors: {
-        accent: "#ffd231f4",
+        accent: "#ffc90af4",
       },
     },
   },
