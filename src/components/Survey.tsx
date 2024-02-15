@@ -14,7 +14,7 @@ const Survey = () => {
     }
   }, [controls, inView]);
   return (
-    <div ref={ref} className="container mt-40">
+    <div ref={ref} id="survey" className="container mt-40">
       <div className="grid lg:grid-cols-[50%,1fr] gap-20">
         <div className="self-center">
           <motion.h2
@@ -52,7 +52,7 @@ const Survey = () => {
             ipsum dolor sit amet consectetur adipisicing elit. Fuga, dicta!
           </motion.p>
         </div>
-        <div>
+        <div className="shadow-2xl w-fit rounded-sm overflow-hidden">
           <AnimatedImage
             className="w-[100%] h-auto lg:w-auto lg:h-[90vh]"
             src="/survey.png"

@@ -49,11 +49,9 @@ const Footer = () => {
         <div className="space-y-4">
           <h2 className="text-xl font-bold">Opening Hours</h2>
           <ul className="space-y-2">
-            {Object.entries(openingHours).map(([day, hours]) => (
-              <li key={day}>
-                <span className="font-semibold">{day}:</span> {hours}
-              </li>
-            ))}
+            <li>Monday - Friday: 9:00 AM - 6:00 PM</li>
+            <li>Saturday: 10:00 AM - 4:00 PM</li>
+            <li>Sunday: Closed</li>
           </ul>
         </div>
 

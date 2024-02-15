@@ -7,22 +7,22 @@ import ServicesCard from "./ServicesCard";
 
 const servicesData = [
   {
-    img: "/services__1.png",
+    img: "/star.gif",
     title: "Professonal Kitchen",
     desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, odio.",
   },
   {
-    img: "/services__2.png",
+    img: "/delivery.gif",
     title: "Delivery",
     desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, odio.",
   },
   {
-    img: "/services__3.png",
+    img: "/wine.gif",
     title: "Wine List",
     desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, odio.",
   },
   {
-    img: "/services__4.png",
+    img: "/wifi.gif",
     title: "Free Wifi",
     desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, odio.",
   },
@@ -38,7 +38,7 @@ const Services = () => {
     }
   }, [controls, inView]);
   return (
-    <div className="container pt-40">
+    <div id="service" className="container pt-40">
       <div ref={ref} className="space-y-4 w-fit mx-auto text-center">
         <motion.h2
           initial={{ opacity: 0, y: 50 }}

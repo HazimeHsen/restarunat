@@ -42,7 +42,7 @@ const Featured = () => {
     }
   }, [controls, inView]);
   return (
-    <div ref={ref} className="container mt-40">
+    <div ref={ref} id="featured" className="container mt-40">
       <motion.h2
         initial={{ opacity: 0, y: 50 }}
         animate={controls}
@@ -67,9 +67,6 @@ const Featured = () => {
         repellat expedita tempore hic iste. Laborum odit illo ex nostrum! Lorem
         ipsum dolor sit amet.
       </motion.p>
-
-      <Dash />
-
       <div className="grid md:grid-cols-[1fr,37%,1fr] gap-16 mt-10">
         {featuredData.map((item, index) => (
           <FeaturedCard key={index} item={item} index={index} />
@@ -102,16 +99,7 @@ const FeaturedCard: React.FC<FeaturedCardProps> = ({ item, index }) => {
   }, [controls, inView]);
   return (
     <div ref={ref} key={index} className="w-fit mx-auto self-end">
-      <AnimatedImage
-        className="w-full"
-        src={item.src}
-        width={item.width}
-        height={item.height}
-        alt={`grid image ${index}`}
-      />
-
       <div className="space-y-4">
-        <Dash />
         <motion.h2
           initial={{ opacity: 0, y: 50 }}
           animate={controls}
@@ -119,6 +107,7 @@ const FeaturedCard: React.FC<FeaturedCardProps> = ({ item, index }) => {
           className="font-medium text-xl">
           {item.title}
         </motion.h2>
+        <Dash />
         <motion.p
           initial={{ opacity: 0, y: 50 }}
           animate={controls}

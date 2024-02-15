@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --primaryColor: #f94c25;
+  --primaryColor: #ffd231f4;
 }
 
 .menu__link {
@@ -122,4 +122,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
