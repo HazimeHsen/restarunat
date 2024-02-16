@@ -1,33 +1,63 @@
+"use client";
 import React from "react";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import Dash from "./Dash";
+import Image from "next/image";
 
 const OurHistory = () => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView();
+
+  React.useEffect(() => {
+    if (inView) {
+      controls.start({ opacity: 1, y: 0 });
+    }
+  }, [controls, inView]);
   return (
     <>
       <section className="overflow-hidden pt-24 dark:bg-dark">
-        <div className="container mx-auto">
+        <div ref={ref} className="container mx-auto">
           <div className="flex flex-wrap items-center justify-between -mx-4">
             <div className="w-full px-4 lg:w-6/12">
               <div className="flex items-center -mx-3 sm:-mx-4">
                 <div className="w-full px-3 sm:px-4 xl:w-1/2">
-                  <div className="py-3 sm:py-4">
-                    <img
+                  <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={controls}
+                    transition={{ duration: 0.4 }}
+                    className="py-3 sm:py-4">
+                    <Image
+                      width={100}
+                      height={100}
                       src="https://i.ibb.co/gFb3ns6/image-1.jpg"
                       alt=""
                       className="w-full rounded-2xl"
                     />
-                  </div>
-                  <div className="py-3 sm:py-4">
-                    <img
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={controls}
+                    transition={{ duration: 0.4 }}
+                    className="py-3 sm:py-4">
+                    <Image
+                      width={100}
+                      height={100}
                       src="https://i.ibb.co/rfHFq15/image-2.jpg"
                       alt=""
                       className="w-full rounded-2xl"
                     />
-                  </div>
+                  </motion.div>
                 </div>
-                <div className="w-full px-3 sm:px-4 xl:w-1/2">
+                <motion.div
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={controls}
+                  transition={{ duration: 0.4 }}
+                  className="w-full px-3 sm:px-4 xl:w-1/2">
                   <div className="relative z-10 my-4">
-                    <img
+                    <Image
+                      width={100}
+                      height={100}
                       src="https://i.ibb.co/9y7nYCD/image-3.jpg"
                       alt=""
                       className="w-full rounded-2xl"
@@ -602,26 +632,38 @@ const OurHistory = () => {
                       </svg>
                     </span>
                   </div>
-                </div>
+                </motion.div>
               </div>
             </div>
 
             <div className="w-full px-4 lg:w-1/2 xl:w-5/12">
               <div className="mt-10 lg:mt-0">
-                <h2 className="mb-5 text-3xl font-bold sm:text-[40px]/[48px]">
+                <motion.h2
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={controls}
+                  transition={{ duration: 0.4, delay: 0.1 }}
+                  className="mb-5 text-3xl font-bold sm:text-[40px]/[48px]">
                   Our History
                   <Dash />
-                </h2>
-                <p className="mb-5 text-base text-body-color">
+                </motion.h2>
+                <motion.p
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={controls}
+                  transition={{ duration: 0.4, delay: 0.2 }}
+                  className="mb-5 text-base text-body-color">
                   It is a long established fact that a reader will be distracted
                   by the readable content of a page when looking at its layout.
                   The point of using Lorem Ipsum is that it has a more-or-less.
-                </p>
-                <p className="mb-8 text-base text-body-color">
+                </motion.p>
+                <motion.p
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={controls}
+                  transition={{ duration: 0.4, delay: 0.3 }}
+                  className="mb-8 text-base text-body-color">
                   A domain name is one of the first steps to establishing your
                   brand. Secure a consistent brand image with a domain name that
                   matches your business.
-                </p>
+                </motion.p>
               </div>
             </div>
           </div>

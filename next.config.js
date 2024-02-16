@@ -6,6 +6,7 @@ const nextConfig = {
       "media.graphassets.com",
       "cdn.sanity.io",
       "dummyimage.com",
+      "i.ibb.co",
     ],
   },
 };
