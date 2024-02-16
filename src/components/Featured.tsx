@@ -42,7 +42,7 @@ const Featured = () => {
     }
   }, [controls, inView]);
   return (
-    <div ref={ref} id="featured" className="container mt-40">
+    <div ref={ref} id="featured" className="container mt-24">
       <motion.h2
         initial={{ opacity: 0, y: 50 }}
         animate={controls}

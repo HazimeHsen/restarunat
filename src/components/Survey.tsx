@@ -14,8 +14,8 @@ const Survey = () => {
     }
   }, [controls, inView]);
   return (
-    <div ref={ref} id="survey" className="container mt-40">
-      <div className="grid lg:grid-cols-[50%,1fr] gap-20">
+    <div ref={ref} id="survey" className="container mt-24 text-center">
+      <div className="">
         <div className="self-center">
           <motion.h2
             initial={{ opacity: 0, y: 50 }}
@@ -36,7 +36,7 @@ const Survey = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={controls}
             transition={{ duration: 0.4 }}
-            className="text-gray-700 pt-16">
+            className="text-gray-700 max-w-3xl mx-auto pt-16">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
             vel, repudiandae fugiat veritatis blanditiis consectetur? Lorem
             ipsum dolor sit amet consectetur adipisicing elit. Fuga, dicta!
@@ -46,20 +46,11 @@ const Survey = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={controls}
             transition={{ duration: 0.4 }}
-            className="text-gray-700 pt-8">
+            className="text-gray-700 max-w-3xl mx-auto pt-8">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
             vel, repudiandae fugiat veritatis blanditiis consectetur? Lorem
             ipsum dolor sit amet consectetur adipisicing elit. Fuga, dicta!
           </motion.p>
-        </div>
-        <div className="shadow-2xl w-fit rounded-sm overflow-hidden">
-          <AnimatedImage
-            className="w-[100%] h-auto lg:w-auto lg:h-[90vh]"
-            src="/survey.png"
-            width={1000}
-            height={600}
-            alt="survey image"
-          />
         </div>
       </div>
     </div>

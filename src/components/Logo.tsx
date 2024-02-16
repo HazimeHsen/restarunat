@@ -8,7 +8,7 @@ const Logo = () => {
   return (
     <Link href="/" className={`flex items-center font-bold gap-2`}>
       <Image
-        className="object-contain"
+        className="object-contain md:w-[90px] w-[60px]"
         width={90}
         height={90}
         src="/logo.png"

@@ -5,6 +5,7 @@ import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
 import Services from "@/components/Services";
 import Survey from "@/components/Survey";
+import OurHistory from "@/components/OurHistory";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <Hero />
       <Featured />
       <Services />
+      <OurHistory />
       <Survey />
       <Footer />
     </ClientOnly>

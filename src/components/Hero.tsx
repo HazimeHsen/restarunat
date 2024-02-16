@@ -81,7 +81,7 @@ const Hero = () => {
             alt="hero"
             width={600}
             height={200}
-            src="/hero.svg"
+            src="/hello.svg"
           />
         </motion.div>
       </div>

@@ -1,20 +1,12 @@
 import React from "react";
+import Logo from "./Logo";
 
 const PageLoading = () => {
   return (
-    <div className="h-screen w-screen flex items-center justify-center">
-      <div className="flex flex-col items-center gap-1">
-        <div className="flex items-center ">
-          <div className="font-semibold">Loading</div>
-          <div className="loader">
-            <li className="ball"></li>
-            <li className="ball"></li>
-            <li className="ball"></li>
-          </div>
-        </div>
-        <div className="progress-loader">
-          <div className="progress"></div>
-        </div>
+    <div className="flex-col h-screen w-screen relative gap-4 flex items-center justify-center">
+      <div className="w-28 h-28 border-8 text-accent text-4xl animate-spin border-gray-300 flex items-center justify-center border-t-accent rounded-full"></div>
+      <div className="animate-pulse absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <Logo />
       </div>
     </div>
   );

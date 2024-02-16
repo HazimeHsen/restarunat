@@ -38,7 +38,7 @@ const Services = () => {
     }
   }, [controls, inView]);
   return (
-    <div id="service" className="container pt-40">
+    <div id="service" className="container pt-24">
       <div ref={ref} className="space-y-4 w-fit mx-auto text-center">
         <motion.h2
           initial={{ opacity: 0, y: 50 }}
