@@ -75,7 +75,7 @@ const MenuPage: React.FC = () => {
       }
     };
     getData();
-  }, [selectedLanguage, selectedCategory]); // Include selectedCategory in the dependency array
+  }, [selectedLanguage, selectedCategory]);
 
   const getMenuTitle = () => {
     return selectedLanguage === "arabic" ? (
@@ -97,6 +97,16 @@ const MenuPage: React.FC = () => {
               : item.categoryE._id) === selectedCategory._id
         )
     : products;
+
+  const groupedMenuData: Record<string, Products[]> = {};
+  filteredMenuData.forEach((item) => {
+    const categoryId =
+      selectedLanguage === "arabic" ? item.categoryA._id : item.categoryE._id;
+    if (!groupedMenuData[categoryId]) {
+      groupedMenuData[categoryId] = [];
+    }
+    groupedMenuData[categoryId].push(item);
+  });
 
   return (
     <ClientOnly>
@@ -124,45 +134,59 @@ const MenuPage: React.FC = () => {
             ))}
           </ul>
 
-          <div className="pt-10">
-            <motion.div
-              className="grid md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4 w-full"
-              key={selectedCategory?._id} // Add key for re-render when selectedCategory changes
-              initial="hidden"
-              animate="visible"
-              variants={{
-                hidden: { opacity: 0 },
-                visible: { opacity: 1, transition: { duration: 0.6 } },
-              }}>
-              {filteredMenuData.map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial="hidden"
-                  animate="visible"
-                  variants={{
-                    hidden: { opacity: 0, y: 10 },
-                    visible: {
-                      opacity: 1,
-                      y: 0,
-                      transition: { duration: 0.6 },
-                    },
-                  }}>
-                  <MenuCard
-                    lang={selectedLanguage}
-                    images={item.image}
-                    title={
-                      selectedLanguage === "arabic" ? item.nameA : item.nameE
-                    }
-                    desc={
-                      selectedLanguage === "arabic"
-                        ? item.contentA
-                        : item.contentE
-                    }
-                    price={item.price}
-                  />
-                </motion.div>
-              ))}
-            </motion.div>
+          <div className="pt-10 lg:mx-36">
+            {Object.keys(groupedMenuData).map((categoryId, index) => (
+              <motion.div
+                key={categoryId + index}
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  hidden: { opacity: 0, y: 10 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+                }}
+                className="mb-8">
+                <h2 className="text-lg md:text-2xl font-bold mb-4">
+                  {selectedLanguage === "arabic"
+                    ? categories.find((cat) => cat._id === categoryId)?.name
+                    : categoryId === "all"
+                    ? "All"
+                    : categories.find((cat) => cat._id === categoryId)?.name ||
+                      "Other"}
+                </h2>
+                <div className="grid md:grid-cols-2 gap-2 md:gap-4 w-full">
+                  {groupedMenuData[categoryId].map((item, index) => (
+                    <motion.div
+                      key={index}
+                      initial="hidden"
+                      animate="visible"
+                      variants={{
+                        hidden: { opacity: 0, y: 10 },
+                        visible: {
+                          opacity: 1,
+                          y: 0,
+                          transition: { duration: 0.4, delay: 0.1 },
+                        },
+                      }}>
+                      <MenuCard
+                        lang={selectedLanguage}
+                        images={item.image}
+                        title={
+                          selectedLanguage === "arabic"
+                            ? item.nameA
+                            : item.nameE
+                        }
+                        desc={
+                          selectedLanguage === "arabic"
+                            ? item.contentA
+                            : item.contentE
+                        }
+                        price={item.price}
+                      />
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
         <Footer />

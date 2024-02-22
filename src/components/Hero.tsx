@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { BsPinterest, BsTwitter } from "react-icons/bs";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import localFont from "next/font/local";
+import { useRouter } from "next/navigation";
 
 const myFont = localFont({ src: "../../public/head.ttf" });
 const Hero = () => {
@@ -14,7 +15,7 @@ const Hero = () => {
     hidden: { opacity: 0, y: 50 },
     visible: { opacity: 1, y: 0 },
   };
-
+const router = useRouter();
   return (
     <motion.div
       initial="hidden"
@@ -47,7 +48,7 @@ const Hero = () => {
             variants={fadeIn}
             transition={{ delay: 0.6, duration: 0.4 }}
             className="flex items-center gap-4">
-            <Button>View Menu</Button>
+            <Button onClick={() => router.push("/menu")}>View Menu</Button>
             <Button variant="outline">Call Us</Button>
           </motion.div>
           <motion.div
