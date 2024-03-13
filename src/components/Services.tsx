@@ -51,7 +51,7 @@ const Services = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={controls}
           transition={{ duration: 0.4 }}
-          className="text-gray-700">
+          className="text-gray-400">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam dolorem
           <br />
           quidem esse eum animi?

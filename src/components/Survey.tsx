@@ -36,7 +36,7 @@ const Survey = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={controls}
             transition={{ duration: 0.4 }}
-            className="text-gray-700 max-w-3xl mx-auto pt-16">
+            className="text-gray-400 max-w-3xl mx-auto pt-16">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
             vel, repudiandae fugiat veritatis blanditiis consectetur? Lorem
             ipsum dolor sit amet consectetur adipisicing elit. Fuga, dicta!
@@ -46,7 +46,7 @@ const Survey = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={controls}
             transition={{ duration: 0.4 }}
-            className="text-gray-700 max-w-3xl mx-auto pt-8">
+            className="text-gray-400 max-w-3xl mx-auto pt-8">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
             vel, repudiandae fugiat veritatis blanditiis consectetur? Lorem
             ipsum dolor sit amet consectetur adipisicing elit. Fuga, dicta!

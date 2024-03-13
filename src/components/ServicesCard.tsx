@@ -52,7 +52,7 @@ const ServicesCard: React.FC<propsType> = ({ img, title, index, desc }) => {
           initial={{ opacity: 0, y: 50 }}
           animate={controls}
           transition={{ duration: 0.4, delay: (index + 1) * 0.1 }}
-          className="text-[14px] text-gray-700">
+          className="text-[14px] text-gray-400">
           {desc}
         </motion.p>
       </div>

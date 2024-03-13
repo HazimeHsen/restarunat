@@ -62,7 +62,7 @@ const Featured = () => {
         initial={{ opacity: 0, y: 50 }}
         animate={controls}
         transition={{ duration: 0.4, delay: 0.1 }}
-        className="max-w-[550px] pt-10 text-gray-700">
+        className="max-w-[550px] pt-10 text-gray-400">
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa placeat
         repellat expedita tempore hic iste. Laborum odit illo ex nostrum! Lorem
         ipsum dolor sit amet.
@@ -112,7 +112,7 @@ const FeaturedCard: React.FC<FeaturedCardProps> = ({ item, index }) => {
           initial={{ opacity: 0, y: 50 }}
           animate={controls}
           transition={{ duration: 0.4, delay: 0.1 }}
-          className="text-gray-700 text-[14px] xl:text-[16px]">
+          className="text-gray-400 text-[14px] xl:text-[16px]">
           {item.description}
         </motion.p>
       </div>

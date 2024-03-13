@@ -66,17 +66,17 @@ const Modal: React.FC<ModalProps> = ({
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95">
                 <Dialog.Panel
-                  className={`w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all ${
+                  className={`w-full max-w-md transform overflow-hidden rounded-2xl bg-gray-700 text-white p-6 text-left align-middle shadow-xl transition-all ${
                     isRTL ? "text-right" : "text-left"
                   }`}>
                   <Slider images={images} />
                   <div className="mt-2">
                     <Dialog.Title
                       as="h3"
-                      className="text-lg font-medium leading-6 text-gray-900">
+                      className="text-lg font-medium leading-6">
                       {title}
                     </Dialog.Title>
-                    <div className="text-sm text-gray-500 mt-2">
+                    <div className="text-sm text-gray-400 mt-2">
                       <PortableText value={desc || []} />
                     </div>
                     <p className="text-sm text-accent mt-2">${price}</p>

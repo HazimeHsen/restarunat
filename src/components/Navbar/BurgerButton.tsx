@@ -14,7 +14,7 @@ const BurgerButton = ({
 
   return (
     <div
-      className={`burger stroke-black ${isOpen ? "active stroke-white" : ""}`}
+      className={`burger ${isOpen ? "active" : ""} stroke-white`}
       onClick={handleToggle}>
       <svg
         xmlns="http://www.w3.org/2000/svg"

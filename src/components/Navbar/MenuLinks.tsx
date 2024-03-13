@@ -23,7 +23,7 @@ const MenuLinks = () => {
           transition={{ duration: 0.3, delay: index * 0.1 + 0.3 }}>
           <AnimatedLink
             href={link.href}
-            className="menu__link flex items-center !text-black hover:!text-primary gap-2 w-fit pr-1">
+            className="menu__link flex items-center !text-white hover:!text-primary gap-2 w-fit pr-1">
             {link.title}{" "}
           </AnimatedLink>
         </motion.div>

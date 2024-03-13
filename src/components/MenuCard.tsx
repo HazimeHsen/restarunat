@@ -26,12 +26,14 @@ const MenuCard: React.FC<propsType> = ({
   return (
     <div
       onClick={() => setIsOpen(!isOpen)}
-      className="flex flex-1 items-center peer bg-gray-50 py-2 hover:bg-accent/20 transition-colors duration-200 px-5 gap-3 cursor-pointer rounded-md justify-between">
+      className="flex flex-1 items-center text-black group bg-gray-50 py-2 hover:bg-accent transition-colors duration-200 px-5 gap-3 cursor-pointer rounded-md justify-between">
       <h2 className="text-sm font-semibold">{title}</h2>
       <div className="flex items-center gap-2">
-        <p className="text-accent">${price}</p>
+        <p className="text-accent group-hover:text-white">${price}</p>
         <BsArrowRight
-          className={`${lang === "arabic" && "rotate-180"} text-accent`}
+          className={`${
+            lang === "arabic" && "rotate-180"
+          } text-accent group-hover:text-white`}
         />
       </div>
       <Modal
